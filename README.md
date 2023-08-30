@@ -1,4 +1,4 @@
-# The AI Research Agent
+# An Autonomous AI Research Agent
 The python implementation of an AI Research Agent that can solve the problem of multi-hop KBQA with deep reasoning capability. 
 If you are interested in knowing more about the ‘Why’, the ‘What’, and the design evolution of the AI Research Agent, then please read this article. 
 
