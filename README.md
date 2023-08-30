@@ -2,7 +2,7 @@
 The python implementation of an AI Research Agent that can solve the problem of multi-hop KBQA with deep reasoning capability. 
 If you are interested in knowing more about the ‘Why’, the ‘What’, and the design evolution of the AI Research Agent, then please read this article. 
 
-<Link>
+**[The Research Agent](https://medium.com/@rahul.nyk/the-research-agent-4ef8e6f1b741)**
 
 ## Database notebook
 The Database notebook populates the vector store with the source text corpus. I am using the following data repository for the example data set:
