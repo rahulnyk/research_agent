@@ -5,22 +5,23 @@ from langchain.prompts import PromptTemplate
 from langchain.vectorstores import PGVector
 from langchain.chains import RetrievalQA
 
-def retrieval_qa(llm, store: PGVector, question: str, verbose: bool = True):
+def retrieval_qa(llm, retriever: PGVector, question: str, answer_length: 250, verbose: bool = True):
     """
     This chain is used to answer the intermediate questions.
     """
-    prompt_template = (
-    "Use the following pieces of context" 
-    " Context:"
-    " {context}"
-    " Your objective is to answer the following question"
-    " Question:"
-    " {question}"
-    " Answer based only on the context and no other previous knowledge"
-    " don't try to make up an answer."
-    " If you don't know the answer, just say that you don't know,"
-    " Answer in less than 250 words."
-    " Answer :")
+    prompt_answer_length = f" Answer in less than {answer_length} words.\n"
+
+    prompt_template = """
+    Your objective is to answer the following question
+    Question:
+    {question}
+    Use the following pieces of context
+    Context:
+    {context}
+    Answer based only on the context and no other previous knowledge
+    don't try to make up an answer.
+    If you don't know the answer, return 'I Dont Know',
+    """ + prompt_answer_length + "Answer :"
 
     PROMPT = PromptTemplate(
         template=prompt_template, input_variables=["context", "question"]
@@ -29,7 +30,7 @@ def retrieval_qa(llm, store: PGVector, question: str, verbose: bool = True):
     qa_chain = RetrievalQA.from_chain_type(
         llm=llm, 
         chain_type="stuff", 
-        retriever=store.as_retriever(),
+        retriever=retriever,
         return_source_documents=True,
         chain_type_kwargs={"prompt": PROMPT},
         verbose = verbose,
