@@ -1,3 +1,5 @@
 .env
 .DS_Store
 .python-version
+law_database.ipynb
+playground

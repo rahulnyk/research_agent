@@ -1,5 +1,5 @@
 def qStr2Dict(question: str) -> dict:
-    print('qStr2Dict :', question)
+    # print('qStr2Dict :', question)
     split = question.strip(" '\"").split(".", 1)
     question_dict = {'id': int(split[0]), 'question': split[-1].strip()}
     return question_dict

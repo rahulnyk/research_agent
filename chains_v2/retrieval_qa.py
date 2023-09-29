@@ -9,19 +9,16 @@ def retrieval_qa(llm, retriever: PGVector, question: str, answer_length: 250, ve
     """
     This chain is used to answer the intermediate questions.
     """
-    prompt_answer_length = f" Answer in less than {answer_length} words.\n"
+    prompt_answer_length = f" Answer as succinctly as possible in less than {answer_length} words.\n"
 
-    prompt_template = """
-    Your objective is to answer the following question
-    Question:
-    {question}
-    Use the following pieces of context
-    Context:
-    {context}
-    Answer based only on the context and no other previous knowledge
-    don't try to make up an answer.
-    If you don't know the answer, return 'I Dont Know',
-    """ + prompt_answer_length + "Answer :"
+    prompt_template = \
+        "You are provided with a question and some helpful context to answer the question \n" \
+        " Question: {question}\n" \
+        " Context: {context}\n" \
+        "Your task is to answer the question based in the information given in the context" \
+        " solely based on the context and no other previous knowledge." \
+        " If you think that the context is not relevant to the question, return 'I Dont Know'." \
+        + prompt_answer_length
 
     PROMPT = PromptTemplate(
         template=prompt_template, input_variables=["context", "question"]
