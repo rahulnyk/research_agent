@@ -17,7 +17,7 @@ def retrieval_qa(llm, retriever: PGVector, question: str, answer_length: 250, ve
         " Context: {context}\n" \
         "Your task is to answer the question based in the information given in the context" \
         " solely based on the context and no other previous knowledge." \
-        " If you think that the context is not relevant to the question, return 'I Dont Know'." \
+        " If the context provided is empty or irrelevant, just return 'Context not sufficient'"\
         + prompt_answer_length
 
     PROMPT = PromptTemplate(
