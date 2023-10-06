@@ -13,7 +13,7 @@ class MostPertinentQuestion(LLMChain):
     @classmethod
     def from_llm(cls, llm: BaseLanguageModel, verbose: bool = True) -> LLMChain:
         """Get the response parser."""
-        task_prioritization_template = (
+        question_prioritization_template = (
             "You are provided with the following list of questions:"
             " {unanswered_questions} \n"
             " Your task is to choose one question from the above list" 
@@ -25,7 +25,7 @@ class MostPertinentQuestion(LLMChain):
             " #. question"
         )
         prompt = PromptTemplate(
-            template=task_prioritization_template,
+            template=question_prioritization_template,
             input_variables=["unanswered_questions", "original_question"],
         )
         return cls(prompt=prompt, llm=llm, verbose=verbose)

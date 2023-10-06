@@ -13,7 +13,7 @@ class QuestionAtomizer(LLMChain):
     @classmethod
     def from_llm(cls, llm: BaseLanguageModel, verbose: bool = True) -> LLMChain:
         """Get the response parser."""
-        task_prioritization_template = (
+        question_atomizer_template = (
             " Your are provided with the following question:"
             " '{question}' \n"
             " Your task is to split the given question in at most {num_questions} very"
@@ -28,7 +28,7 @@ class QuestionAtomizer(LLMChain):
             " n. question"
         )
         prompt = PromptTemplate(
-            template=task_prioritization_template,
+            template=question_atomizer_template,
             input_variables=["question", "num_questions"],
         )
         return cls(prompt=prompt, llm=llm, verbose=verbose)
