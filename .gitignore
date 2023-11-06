@@ -3,4 +3,4 @@
 .python-version
 law_database.ipynb
 playground
-chains_v2/__pycache__
+*/__pycache__
