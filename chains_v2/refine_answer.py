@@ -6,7 +6,7 @@ from langchain.prompts import PromptTemplate
 
 class RefineAnswer(LLMChain):
     """
-    This chain splits the original question into a set of atomistic questions.
+    This refines the answer with every iteration.
     """
 
     @classmethod
